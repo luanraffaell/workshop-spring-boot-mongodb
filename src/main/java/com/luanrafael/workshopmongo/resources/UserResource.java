@@ -53,4 +53,11 @@ public class UserResource {
 		return ResponseEntity.noContent().build(); // para retornar o código 204 usamos o noContent.(204 pois não quero retornar nada)
 	}
 	
+	@RequestMapping(value="/{id}",method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody UserDto objDto, @PathVariable String id){
+		User obj = service.fromDto(objDto);
+		obj.setId(id);
+		obj = service.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 }
